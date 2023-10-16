@@ -1,6 +1,6 @@
 $.ajax({
     type: "GET",
-    url: "https://shop-n7rx.onrender.com/users",
+    url: "https://shop-n7rx.onrender.com/products",
     success: function (response) {
         displayData(response);
     }
