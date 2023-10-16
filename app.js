@@ -21,14 +21,8 @@ function displayData(data) {
 }
 
 $.ajax({
-    type: "POST",
-    url: "https://shop-n7rx.onrender.com/users",
-    data: {
-        id: 11,
-        firstName: "Huy Anh",
-        age: 25,
-        gender: "male"
-    },
+    type: "DELETE",
+    url: "https://shop-n7rx.onrender.com/users/11",
     success: function (response) {
         alert("Ok")
     }
