@@ -19,3 +19,17 @@ function displayData(data) {
         $(".tbody-products").append(tr);
     })
 }
+
+$.ajax({
+    type: "POST",
+    url: "https://shop-n7rx.onrender.com/products",
+    data: {
+        id: 10,
+        firstName: "Huy Anh",
+        age: 25,
+        gender: "male"
+    },
+    success: function (response) {
+        alert("Ok")
+    }
+});
