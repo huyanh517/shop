@@ -19,3 +19,4 @@ function displayData(data) {
         $(".tbody-products").append(tr);
     })
 }
+console.log(window.location)
