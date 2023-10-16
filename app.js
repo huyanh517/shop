@@ -14,7 +14,7 @@ function displayData(data) {
         tr += "<td>" + item.title + "</td>";
         tr += "<td>" + item.category + "</td>";
         tr += "<td>" + "$" + item.price + "</td>";
-        tr += "<td class='text-center '>" + "<button onclick='loadSingleProduct(" + item.id + ")' class='btn btn-warning btn-edit' data-bs-toggle='modal' data-bs-target='#productModal'>" + "Edit" +
+        tr += "<td class='text-center '>" + "<button onclick='loadSingleProduct(" + item.id + ")' class='btn btn-warning btn-edit'>" + "Edit" +
             "</button>" + "<button class='btn btn-danger btn-delete'>" + "Delete" + "</td>";
         tr += "</tr";
 
@@ -27,12 +27,27 @@ function loadSingleProduct(id) {
         type: "GET",
         url: "https://shop-n7rx.onrender.com/products/" + id,
         success: function (response) {
-            console.log(response)
+            displayProductModal(response)
         }
     });
+    $('#productModal').modal('show')
 }
 
 
-function displayProductModal() {
+function displayProductModal(data) {
+    $('#productModal .mb-3').remove()
+    let modalBody = "<div class='mb-3'>" +
+                    "<label for='exampleInputTitle' class='form-label'>" + "Title" + "</label>" +
+                    "<input type='text' class='form-control' id='exampleInputTitle' aria-describedby='titleHelp' value='"+ data.title +"'>" + 
+                    "</div>"
+        modalBody += "<div class='mb-3'>" +
+                    "<label for='exampleInputTitle' class='form-label'>" + "Category" + "</label>" +
+                    "<input type='text' class='form-control' id='exampleInputTitle' aria-describedby='titleHelp' value='"+ data.category +"'>" + 
+                    "</div>"
+        modalBody += "<div class='mb-3'>" +
+                    "<label for='exampleInputTitle' class='form-label'>" + "Price" + "</label>" +
+                    "<input type='text' class='form-control' id='exampleInputTitle' aria-describedby='titleHelp' value='"+ data.price +"'>" + 
+                    "</div>"
 
+    $(modalBody).insertBefore($('#btn-box'))
 }
