@@ -22,7 +22,7 @@ function displayData(data) {
 
 $.ajax({
     type: "POST",
-    url: "https://shop-n7rx.onrender.com/products",
+    url: "https://shop-n7rx.onrender.com/users",
     data: {
         id: 10,
         firstName: "Huy Anh",
