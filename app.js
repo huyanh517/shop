@@ -41,12 +41,12 @@ function displayProductModal(data) {
                     "<input type='text' class='form-control' id='exampleInputTitle' aria-describedby='titleHelp' value='"+ data.title +"'>" + 
                     "</div>"
         modalBody += "<div class='mb-3'>" +
-                    "<label for='exampleInputTitle' class='form-label'>" + "Category" + "</label>" +
-                    "<input type='text' class='form-control' id='exampleInputTitle' aria-describedby='titleHelp' value='"+ data.category +"'>" + 
+                    "<label for='exampleInputCat' class='form-label'>" + "Category" + "</label>" +
+                    "<input type='text' class='form-control' id='exampleInputCat' aria-describedby='titleHelp' value='"+ data.category +"'>" + 
                     "</div>"
         modalBody += "<div class='mb-3'>" +
-                    "<label for='exampleInputTitle' class='form-label'>" + "Price" + "</label>" +
-                    "<input type='text' class='form-control' id='exampleInputTitle' aria-describedby='titleHelp' value='"+ data.price +"'>" + 
+                    "<label for='exampleInputPrice' class='form-label'>" + "Price" + "</label>" +
+                    "<input type='text' class='form-control' id='exampleInputPrice' aria-describedby='titleHelp' value='"+ data.price +"'>" + 
                     "</div>"
 
     $(modalBody).insertBefore($('#btn-box'))
