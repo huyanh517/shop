@@ -19,7 +19,7 @@ function displayData(data) {
         tr += "<td>" + item.category + "</td>";
         tr += "<td>" + `${item.description ? item.description : 'Khong co'}` + "</td>";
         tr += "<td>" + "$" + item.price + "</td>";
-        tr += "<td class='text-center '>" + "<button onclick='loadSingleProduct(" + item.id + ")' class='btn btn-warning btn-edit'>" + "Edit" +
+        tr += "<td style='width: 17%' class='text-center '>" + "<button onclick='loadSingleProduct(" + item.id + ")' class='btn btn-warning btn-edit'>" + "Edit" +
             "</button>" + "<button onclick='deleteSingleProduct(" + item.id + ")' class='btn btn-danger btn-delete'>" + "Delete" + "</td>";
         tr += "</tr";
 
@@ -90,7 +90,7 @@ function displayDashboard() {
         url: "https://shop-n7rx.onrender.com/products",
         success: function (response) {
             $('.product-qty').empty()
-            $('.product-qty').text(response.length)
+            $('.product-qty').text("Total: " + response.length)
         }
     });
     $.ajax({
@@ -98,7 +98,7 @@ function displayDashboard() {
         url: "https://shop-n7rx.onrender.com/users",
         success: function (response) {
             $('.user-qty').empty()
-            $('.user-qty').text(response.length)
+            $('.user-qty').text("Total: " + response.length)
         }
     });
 }
@@ -142,7 +142,6 @@ $('.product-form-add').on("submit", function (e) {
             $("#addProductModal").modal("hide")
             $('.modal-backdrop').remove()
             window.location.reload();
-
         }
     });
 })
