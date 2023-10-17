@@ -1,3 +1,8 @@
 .btn-delete {
     margin-left: 22px;
 }
+
+.addProduct {
+    height: 40px;
+    padding: 0.5rem 1rem;
+}
