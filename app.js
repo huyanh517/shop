@@ -1,16 +1,20 @@
-$.ajax({
-    type: "GET",
-    url: "https://shop-n7rx.onrender.com/products",
-    success: function (response) {
-        displayData(response);
-    }
-});
+function loadProducts() {
+    $.ajax({
+        type: "GET",
+        url: "https://shop-n7rx.onrender.com/products",
+        success: function (response) {
+            $(".tbody-products").empty()
+            displayData(response);
+        }
+    });
+}
 
+loadProducts();
 
 function displayData(data) {
     $(data).each((index, item) => {
-        let tr = "<tr>";
-        tr += "<td scope='row'>" + Number(index + 1) + "</td>";
+        let tr = "<tr class='prd-row' data-id='" + item.id + "'>";
+        tr += "<td class='prd-row-idx' scope='row'>" + Number(index + 1) + "</td>";
         tr += "<td>" + item.title + "</td>";
         tr += "<td>" + item.category + "</td>";
         tr += "<td>" + "$" + item.price + "</td>";
@@ -36,18 +40,40 @@ function loadSingleProduct(id) {
 
 function displayProductModal(data) {
     $('#productModal .mb-3').remove()
+    $('#exampleInputID').remove()
     let modalBody = "<div class='mb-3'>" +
-                    "<label for='exampleInputTitle' class='form-label'>" + "Title" + "</label>" +
-                    "<input type='text' class='form-control' id='exampleInputTitle' aria-describedby='titleHelp' value='"+ data.title +"'>" + 
-                    "</div>"
-        modalBody += "<div class='mb-3'>" +
-                    "<label for='exampleInputCat' class='form-label'>" + "Category" + "</label>" +
-                    "<input type='text' class='form-control' id='exampleInputCat' aria-describedby='titleHelp' value='"+ data.category +"'>" + 
-                    "</div>"
-        modalBody += "<div class='mb-3'>" +
-                    "<label for='exampleInputPrice' class='form-label'>" + "Price" + "</label>" +
-                    "<input type='text' class='form-control' id='exampleInputPrice' aria-describedby='titleHelp' value='"+ data.price +"'>" + 
-                    "</div>"
+        "<label for='exampleInputTitle' class='form-label'>" + "Title" + "</label>" +
+        "<input type='text' class='form-control' id='exampleInputTitle' aria-describedby='titleHelp' value='" + data.title + "'>" +
+        "</div>"
+    modalBody += "<div class='mb-3'>" +
+        "<label for='exampleInputCat' class='form-label'>" + "Category" + "</label>" +
+        "<input type='text' class='form-control' id='exampleInputCat' aria-describedby='titleHelp' value='" + data.category + "'>" +
+        "</div>"
+    modalBody += "<div class='mb-3'>" +
+        "<label for='exampleInputPrice' class='form-label'>" + "Price" + "</label>" +
+        "<input type='text' class='form-control' id='exampleInputPrice' aria-describedby='titleHelp' value='" + data.price + "'>" +
+        "</div>"
+    modalBody += "<input type='text' class='form-control' id='exampleInputID' aria-describedby='titleHelp' value='" + data.id + "'>"
+
 
     $(modalBody).insertBefore($('#btn-box'))
 }
+
+$(".product-form").on("submit", function (e) {
+    e.preventDefault()
+    const productUpdated = {
+        title: $("#exampleInputTitle").val(),
+        category: $("#exampleInputCat").val(),
+        price: $("#exampleInputPrice").val()
+    }
+    $.ajax({
+        type: "PUT",
+        url: "https://shop-n7rx.onrender.com/products/" + $("#exampleInputID").val(),
+        data: productUpdated,
+        success: function (response) {
+            $("#productModal").modal('hide')
+            loadProducts();
+        }
+    });
+})
+
