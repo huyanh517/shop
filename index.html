@@ -13,7 +13,7 @@
     <body>
         <!-- Modal Detail Product -->
         <div
-            class="modal fade"
+            class="modal fade exampleModalLabel"
             id="productModal"
             tabindex="-1"
             aria-labelledby="exampleModalLabel"
@@ -23,7 +23,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="exampleModalLabel">
-                            Modal title
+                            Edit Product
                         </h1>
                         <button
                             type="button"
@@ -56,17 +56,17 @@
 
         <!--Modal Add product-->
         <div
-            class="modal fade"
+            class="modal fade addProductLabel modal-second"
             id="addProductModal"
-            tabindex="-1"
-            aria-labelledby="exampleModalLabel"
+            tabindex="-2"
+            aria-labelledby="addProductLabel"
             aria-hidden="true"
         >
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">
-                            Modal title
+                        <h1 class="modal-title fs-5" id="addProductLabel">
+                            Add Product
                         </h1>
                         <button
                             type="button"
@@ -95,11 +95,11 @@
                                     class="form-label"
                                     >Description</label
                                 >
-                                <input
-                                    type="text"
+                                <textarea
+                                    name=""
                                     class="form-control"
-                                    id="exampleInputDescAddProd"
-                                />
+                                    id="exampleInputDescAddPrd"
+                                ></textarea>
                             </div>
                             <div class="mb-3">
                                 <label
@@ -125,6 +125,18 @@
                                     id="exampleInputPriceAddPrd"
                                 />
                             </div>
+							<div class="mb-3">
+                                <label
+                                    for="exampleInputImagesAddPrd"
+                                    class="form-label"
+                                    >Images</label
+                                >
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="exampleInputImagesAddPrd"
+                                />
+                            </div>
                             <div id="btn-box-form-add">
                                 <button
                                     type="button"
@@ -133,7 +145,7 @@
                                 >
                                     Close
                                 </button>
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary" data-backdrop="false">
                                     Save changes
                                 </button>
                             </div>
@@ -163,7 +175,7 @@
                             aria-controls="pills-home"
                             aria-selected="true"
                         >
-                            Home
+                            Dashboard
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
@@ -171,7 +183,7 @@
                             class="nav-link"
                             id="pills-profile-tab"
                             data-bs-toggle="pill"
-                            data-bs-target="#pills-profile"
+                            data-bs-target="#pills-product"
                             type="button"
                             role="tab"
                             aria-controls="pills-profile"
@@ -195,14 +207,6 @@
                         </button>
                     </li>
                 </ul>
-
-                <button
-                    class="btn btn-primary btn-sm addProduct"
-                    data-bs-toggle="modal"
-                    data-bs-target="#addProductModal"
-                >
-                    Add Product
-                </button>
             </div>
             <div class="tab-content p-2" id="pills-tabContent">
                 <div
@@ -211,21 +215,57 @@
                     role="tabpanel"
                     aria-labelledby="pills-home-tab"
                 >
-                    Home
+                    <div class="container-fluid">
+                        <div class="row justify-content-center gap-2">
+                            <div class="card col-4">
+                                <img
+                                    src="./img/pexels-photo-90946.jpeg"
+                                    class="card-img-top"
+                                    alt="..."
+                                />
+                                <div class="card-body">
+                                    <h3 class="text-center">Products</h3>
+                                    <h4 class="text-center product-qty"></h4>
+                                </div>
+                            </div>
+                            <div class="card col-4">
+                                <img
+                                    src="./img/pexels-photo-8293702.jpeg"
+                                    class="card-img-top"
+                                    alt="..."
+                                />
+                                <div class="card-body">
+                                    <h3 class="text-center">Users</h3>
+                                    <h4 class="text-center user-qty"></h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div
-                    class="tab-pane fade"
-                    id="pills-profile"
+                    class="tab-pane fade "
+                    id="pills-product"
                     role="tabpanel"
                     aria-labelledby="pills-profile-tab"
                 >
+                    <button
+                        type="button"
+                        class="btn btn-success btn-sm addProduct mb-3"
+                        data-bs-toggle="modal"
+                        data-bs-target="#addProductModal"
+                    >
+                        Add Product
+                    </button>
                     <table class="table">
                         <thead>
+                            <caption>
+                                Products
+                            </caption>
                             <tr>
                                 <th>ID</th>
                                 <th>Name</th>
-                                <th>Description</th>
                                 <th>Category</th>
+                                <th>Description</th>
                                 <th>Price</th>
                                 <th colspan="1" class="text-center">Actions</th>
                             </tr>

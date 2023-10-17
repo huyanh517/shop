@@ -2,7 +2,7 @@ $.ajax({
     type: "GET",
     url: "https://shop-n7rx.onrender.com/products",
     success: function (response) {
-        $('.card-img-top').attr('src', response[0].images[0])
+        console.log(typeof(response[28].images) == 'object')
         
     }
 });

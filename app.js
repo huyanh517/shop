@@ -20,13 +20,14 @@ function displayData(data) {
         tr += "<td>" + `${item.description ? item.description : 'Khong co'}` + "</td>";
         tr += "<td>" + "$" + item.price + "</td>";
         tr += "<td class='text-center '>" + "<button onclick='loadSingleProduct(" + item.id + ")' class='btn btn-warning btn-edit'>" + "Edit" +
-            "</button>" + "<button class='btn btn-danger btn-delete'>" + "Delete" + "</td>";
+            "</button>" + "<button onclick='deleteSingleProduct(" + item.id + ")' class='btn btn-danger btn-delete'>" + "Delete" + "</td>";
         tr += "</tr";
 
         $(".tbody-products").append(tr);
     })
 }
 
+//Edit
 function loadSingleProduct(id) {
     $.ajax({
         type: "GET",
@@ -71,7 +72,6 @@ $(".product-form").on("submit", function (e) {
         price: Number($("#exampleInputPrice").val()),
         description: $('#exampleInputDesc').val(),
     }
-    console.log("productUpdated", productUpdated)
     $.ajax({
         type: "PATCH",
         url: "https://shop-n7rx.onrender.com/products/" + $("#exampleInputID").val(),
@@ -83,3 +83,66 @@ $(".product-form").on("submit", function (e) {
     });
 })
 
+//Dashboard
+function displayDashboard() {
+    $.ajax({
+        type: "GET",
+        url: "https://shop-n7rx.onrender.com/products",
+        success: function (response) {
+            $('.product-qty').empty()
+            $('.product-qty').text(response.length)
+        }
+    });
+    $.ajax({
+        type: "GET",
+        url: "https://shop-n7rx.onrender.com/users",
+        success: function (response) {
+            $('.user-qty').empty()
+            $('.user-qty').text(response.length)
+        }
+    });
+}
+
+displayDashboard()
+
+
+//Delete Product
+
+function deleteSingleProduct(id) {
+    if (!confirm('Do you want to delete ?')) {
+        return
+    } else {
+        $.ajax({
+            type: "DELETE",
+            url: "https://shop-n7rx.onrender.com/products/" + id,
+            success: function (response) {
+                loadProducts();
+                displayDashboard()
+            }
+        });
+    }
+}
+
+// Add product
+$('.product-form-add').on("submit", function (e) {
+    e.preventDefault()
+    const imageList = $("#exampleInputImagesAddPrd").val()
+    const newProduct = {
+        title: $("#exampleInputTitleAddPrd").val(),
+        description: $("#exampleInputDescAddPrd").val(),
+        category: $("#exampleInputCategoryAddPrd").val(),
+        price: $("#exampleInputPriceAddPrd").val(),
+        images: imageList,
+    }
+    $.ajax({
+        type: "POST",
+        url: "https://shop-n7rx.onrender.com/products",
+        data: newProduct,
+        success: function (response) {
+            $("#addProductModal").modal("hide")
+            $('.modal-backdrop').remove()
+            window.location.reload();
+
+        }
+    });
+})
