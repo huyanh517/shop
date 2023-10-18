@@ -53,9 +53,6 @@ function renderSLiderProduct(data) {
 
 // Add to Cart
 
-const alertMsg = "<div class='alert alert-success mt-5 alertAddCart' role='alert'>" +
-"Product has been added to cart" + "</div>"
-
 $(".addToCart").on("click", function (e) {
     $.ajax({
         type: "GET",
@@ -82,8 +79,9 @@ $(".addToCart").on("click", function (e) {
                                 prdQuantity: Number(existItem.prdQuantity) + 1
                             },
                             success: function (response) {
-                                $(alertMsg).insertAfter($('.addToCart'))
-                                $(alertMsg).fadeOut('normal')
+                                $("#success-alert").show();
+                                setTimeout(function () { $("#success-alert").hide(); }, 2000);
+
                             }
                         });
                     } else {
@@ -92,8 +90,8 @@ $(".addToCart").on("click", function (e) {
                             url: "https://shop-n7rx.onrender.com/cart",
                             data: cartItem,
                             success: function (res) {
-                                $(alertMsg).insertAfter($('.addToCart'))
-                                $(alertMsg).fadeOut('normal')
+                                $("#success-alert").show();
+                                setTimeout(function () { $("#success-alert").hide(); }, 2000);
                             }
                         });
                     }
