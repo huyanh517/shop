@@ -62,6 +62,7 @@ $(".addToCart").on("click", function (e) {
                 prdID: productId,
                 prdTitle: productDetail.title,
                 prdPrice: productDetail.price,
+                prdCategory: productDetail.category,
                 prdQuantity: 1
             }
 
