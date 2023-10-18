@@ -40,15 +40,10 @@ function renderProductDetail(data) {
 
 function renderSLiderProduct(data) {
     $(data.images).each((index, item) => {
-        let itemSLider = "<img src='"+ item +"' alt='"+ item.title +"' width='300px' />" ;
+        let itemSLider = "<img src='" + item + "' alt='" + item.title + "' width='300px' />";
         $('.sliderPrd').append(itemSLider)
     })
 }
-
-
-
-
-
 
 // $(".prd-title")
 // $(".category-detail")
@@ -58,7 +53,10 @@ function renderSLiderProduct(data) {
 
 // Add to Cart
 
-$(".addToCart").on("click", function(e) {
+const alertMsg = "<div class='alert alert-success mt-5 alertAddCart' role='alert'>" +
+"Product has been added to cart" + "</div>"
+
+$(".addToCart").on("click", function (e) {
     $.ajax({
         type: "GET",
         url: "https://shop-n7rx.onrender.com/products/" + productId,
@@ -74,16 +72,31 @@ $(".addToCart").on("click", function(e) {
                 type: "GET",
                 url: "https://shop-n7rx.onrender.com/cart",
                 success: function (response) {
-                    
-                }
-            });
-
-            $.ajax({
-                type: "POST",
-                url: "https://shop-n7rx.onrender.com/cart",
-                data: cartItem,
-                success: function (res) {
-                    alert('Success')
+                    const existItem = response.find(item => item.prdID == productId)
+                    if (existItem) {
+                        const cartItemId = response.findIndex(item => item.prdID == productId) + 1
+                        $.ajax({
+                            type: "PATCH",
+                            url: "https://shop-n7rx.onrender.com/cart/" + cartItemId,
+                            data: {
+                                prdQuantity: Number(existItem.prdQuantity) + 1
+                            },
+                            success: function (response) {
+                                $(alertMsg).insertAfter($('.addToCart'))
+                                $(alertMsg).fadeOut('normal')
+                            }
+                        });
+                    } else {
+                        $.ajax({
+                            type: "POST",
+                            url: "https://shop-n7rx.onrender.com/cart",
+                            data: cartItem,
+                            success: function (res) {
+                                $(alertMsg).insertAfter($('.addToCart'))
+                                $(alertMsg).fadeOut('normal')
+                            }
+                        });
+                    }
                 }
             });
         }
