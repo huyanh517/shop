@@ -2,6 +2,8 @@ $.ajax({
     type: "GET",
     url: "https://shop-n7rx.onrender.com/cart",
     success: function (response) {
+        console.log(response)
+        alert('Thanh cong')
         renderCart(response)
     }
 });
