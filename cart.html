@@ -1,11 +1,224 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    Carts
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Shop</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+            integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        />
+
+        <link rel="stylesheet" href="index.css" />
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid align-items-center">
+                <a class="navbar-brand">Stores</a>
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div
+                    class="collapse navbar-collapse ms-5"
+                    id="navbarSupportedContent"
+                >
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a
+                                class="nav-link"
+                                aria-current="page"
+                                href="./shop.html"
+                                >Home</a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./products.html"
+                                >Products</a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./categories.html"
+                                >Categories</a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./cart.html">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="20"
+                                    height="20"
+                                    fill="currentColor"
+                                    class="bi bi-bag"
+                                    viewBox="0 0 16 16"
+                                >
+                                    <path
+                                        d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"
+                                    />
+                                </svg>
+                            </a>
+                        </li>
+                    </ul>
+                    <form class="d-flex">
+                        <input
+                            class="form-control me-2"
+                            type="search"
+                            placeholder="Search"
+                            aria-label="Search"
+                        />
+                        <button class="btn btn-outline-success" type="submit">
+                            Search
+                        </button>
+                    </form>
+                    <div class="cart"></div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container">
+            <!-- Breadcumb -->
+            <nav aria-label="breadcrumb" class="mt-5 mb-5">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="./shop.html">Home</a>
+                    </li>
+                    <li
+                        class="breadcrumb-item active currProduct"
+                        aria-current="page"
+                    >
+                        Cart
+                    </li>
+                </ol>
+            </nav>
+            <!-- End Breadcumb -->
+
+            <!-- Cart -->
+
+            <h3 class="mb-3" style="padding-bottom: 20px">Shopping Cart</h3>
+
+            <hr />
+
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="cart-container container" style="padding: 0">
+                        <div class="row mb-5">
+                            <div class="col-lg-3 prdImg">
+                                <img
+                                    src="./img/apple-iphone-smartphone-desk.jpg"
+                                    alt=""
+                                    class="w-75 prdCartImg"
+                                />
+                            </div>
+                            <div class="col-lg-9 prdDetail">
+                                <div
+                                    class="d-flex gap-3 justify-content-around"
+                                >
+                                    <div class="prdNameVsCat">
+                                        <h5 class="prdCartTitle">
+                                            Hyaluronic Acid Serum
+                                        </h5>
+                                        <p class="prdCartCat">SKINCARE</p>
+                                    </div>
+
+                                    <div class="prdCartQuantity">
+                                        <div class="mb-3">
+                                            <label
+                                                for="prdCartAmount"
+                                                class="form-label"
+                                                >Amount</label
+                                            >
+                                            <input
+                                                type="number"
+                                                class="form-control w-50"
+                                                id="prdCartAmount"
+                                                min="1"
+                                                value="1"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div class="prdCartPrice">
+                                        <p id="prdCartPrice">$179.99</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-5">
+                            <div class="col-lg-3 prdImg">
+                                <img
+                                    src="./img/apple-iphone-smartphone-desk.jpg"
+                                    alt=""
+                                    class="w-75 prdCartImg"
+                                />
+                            </div>
+                            <div class="col-lg-9 prdDetail">
+                                <div
+                                    class="d-flex gap-3 justify-content-around"
+                                >
+                                    <div class="prdNameVsCat">
+                                        <h5 class="prdCartTitle">
+                                            Hyaluronic Acid Serum
+                                        </h5>
+                                        <p class="prdCartCat">SKINCARE</p>
+                                    </div>
+
+                                    <div class="prdCartQuantity">
+                                        <div class="mb-3">
+                                            <label
+                                                for="prdCartAmount"
+                                                class="form-label"
+                                                >Amount</label
+                                            >
+                                            <input
+                                                type="number"
+                                                class="form-control w-50"
+                                                id="prdCartAmount"
+                                                min="1"
+                                                value="1"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div class="prdCartPrice">
+                                        <p id="prdCartPrice">$179.99</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="sub-total">Subtotal : $400</div>
+                </div>
+            </div>
+        </div>
+
+        <a href="./index.html">Admin Dashboard</a>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script
+            type="text/javascript"
+            src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
+        ></script>
+        <script src="cart.js"></script>
+    </body>
 </html>

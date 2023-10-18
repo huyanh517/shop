@@ -102,3 +102,33 @@ p {
 .prd-desc {
     color: #617d98;
 }
+
+.prdCartImg {
+    border-radius: 12px;
+}
+
+
+
+.prdCartTitle,
+#prdCartPrice {
+    color: #394e6a;
+}
+
+#prdCartPrice {
+    font-weight: bold;
+}
+
+.sub-total {
+    background-color: #f0f6ff;
+    padding: 16px;
+    border-radius: 12px;
+}
+
+.prdCartTitle {
+    font-size: 18px;
+}
+
+.prdCartCat {
+    font-size: 15px;
+    color: #939da9;
+}
