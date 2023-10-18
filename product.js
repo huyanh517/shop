@@ -14,7 +14,7 @@ $.ajax({
             speed: 500,
             autoplaySpeed: 1500,
             autoplay: true,
-            fade: true
+            fade: true,
         });
     }
 });
@@ -62,19 +62,27 @@ $(".addToCart").on("click", function(e) {
     $.ajax({
         type: "GET",
         url: "https://shop-n7rx.onrender.com/products/" + productId,
-        success: function (response) {
+        success: function (productDetail) {
             const cartItem = {
                 prdID: productId,
-                prdTitle: response.title,
-                prdPrice: response.price,
+                prdTitle: productDetail.title,
+                prdPrice: productDetail.price,
                 prdQuantity: 1
             }
+
+            $.ajax({
+                type: "GET",
+                url: "https://shop-n7rx.onrender.com/cart",
+                success: function (response) {
+                    
+                }
+            });
 
             $.ajax({
                 type: "POST",
                 url: "https://shop-n7rx.onrender.com/cart",
                 data: cartItem,
-                success: function (response) {
+                success: function (res) {
                     alert('Success')
                 }
             });
