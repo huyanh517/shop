@@ -10,11 +10,6 @@
         />
         <link
             rel="stylesheet"
-            type="text/css"
-            href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
-        />
-        <link
-            rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
             integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         />
@@ -118,9 +113,15 @@
                 <div class="col-lg-8">
                     <div class="cart-container container" style="padding: 0">
                     </div>
+                    <div class="text-end">
+                        <button class="btn-success btn" onclick="getTotalOnChange()">Update</button>
+                    </div>
                 </div>
                 <div class="col-lg-4">
-                    <div class="sub-total">Subtotal : $400</div>
+                    <div class="sub-total d-flex justify-content-between">
+                        <p>Subtotal:</p>
+                        <p class="totalPriceCart"></p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -131,10 +132,6 @@
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-        <script
-            type="text/javascript"
-            src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
-        ></script>
         <script src="./cart.js"></script>
     </body>
 </html>
