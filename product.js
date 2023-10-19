@@ -1,6 +1,25 @@
 const urlParams = new URLSearchParams(window.location.search);
 const productId = urlParams.get('id');
 
+const urlParamSearch = new URLSearchParams(window.location.search);
+const searchParam = urlParamSearch.get('q');
+
+$(".searchText").text(searchParam)
+
+$.ajax({
+    type: "GET",
+    url: "https://shop-n7rx.onrender.com/products?q=" + searchParam,
+    success: function (response) {
+        renderProduct(response)
+    }
+});
+
+//Search
+
+$(".searchForm").on('input', function() {
+    $(".searchBtn").attr('href', "./search.html?q=" + $(this).val())
+})
+
 $.ajax({
     type: "GET",
     url: "https://shop-n7rx.onrender.com/products/" + productId,

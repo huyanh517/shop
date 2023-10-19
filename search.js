@@ -11,6 +11,11 @@ $.ajax({
     }
 });
 
+//Search
+
+$(".searchForm").on('input', function() {
+    $(".searchBtn").attr('href', "./search.html?q=" + $(this).val())
+})
 
 function renderProduct(data) {
     $(data).each((index, item) => {
