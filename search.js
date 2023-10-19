@@ -1,26 +1,18 @@
-$.ajax({
-    type: "GET",
-    url: "https://shop-n7rx.onrender.com/products",
-    success: function (response) {
-        const featuredProduct = response.filter(item => item.rating > 4.8);
-        if (response) {
-            renderFeaturedProduct(featuredProduct)
-        } else {
-            $(".featuredPrdBox").html('<h1>Loading...</h1>')
-        }
+const urlParams = new URLSearchParams(window.location.search);
+const searchParam = urlParams.get('q');
 
-    }
-});
+$(".searchText").text(searchParam)
 
 $.ajax({
     type: "GET",
-    url: "https://shop-n7rx.onrender.com/cart",
+    url: "https://shop-n7rx.onrender.com/products?q=" + searchParam,
     success: function (response) {
-        $(".quantityCart").text(response.length)
+        renderProduct(response)
     }
 });
 
-function renderFeaturedProduct(data) {
+
+function renderProduct(data) {
     $(data).each((index, item) => {
         let productCard = "<div class='col-lg-4 col-md-6 col-12 mt-4'>"
         productCard += "<div class='card h-100'>"
@@ -33,15 +25,6 @@ function renderFeaturedProduct(data) {
         productCard += "</div>"
         productCard += "</div>"
 
-        $(".featuredPrdBox").append(productCard)
+        $(".productSearchBox").append(productCard)
     })
 }
-
-
-//Search
-
-$(".searchForm").on('input', function() {
-    $(".searchBtn").attr('href', "./search.html?q=" + $(this).val())
-})
-
-
