@@ -101,3 +101,12 @@ $(".addToCart").on("click", function (e) {
         }
     });
 })
+
+
+$.ajax({
+    type: "GET",
+    url: "https://shop-n7rx.onrender.com/cart",
+    success: function (response) {
+        $(".quantityCart").text(response.length)
+    }
+});

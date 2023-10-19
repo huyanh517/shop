@@ -141,3 +141,7 @@ p {
 .prdCartPrice {
     flex: 1;
 }
+
+.badge {
+    padding: 0;
+}

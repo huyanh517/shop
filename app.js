@@ -9,7 +9,19 @@ function loadProducts() {
     });
 }
 
+function loadUsers() {
+    $.ajax({
+        type: "GET",
+        url: "https://shop-n7rx.onrender.com/users",
+        success: function (response) {
+            $(".tbody-users").empty()
+            displayUsers(response);
+        }
+    });
+}
+
 loadProducts();
+loadUsers()
 
 function displayData(data) {
     $(data).each((index, item) => {
@@ -145,3 +157,20 @@ $('.product-form-add').on("submit", function (e) {
         }
     });
 })
+
+// Display Users
+function displayUsers(data) {
+    $(data).each((index, item) => {
+        let tr = "<tr class='user-row' data-id='" + item.id + "'>";
+        tr += "<td class='user-row-idx' scope='row'>" + Number(index + 1) + "</td>";
+        tr += "<td>" + "<img class='w-50' src='"+item.image+"' />" + "</td>";
+        tr += "<td>" + item.username + "</td>";
+        tr += "<td>" + item.email + "</td>";
+        tr += "<td>" + item.gender + "</td>";
+        tr += "<td style='width: 17%' class='text-center '>" + "<button onclick='loadSingleProduct(" + item.id + ")' class='btn btn-warning btn-edit'>" + "Edit" +
+            "</button>" + "<button onclick='deleteSingleProduct(" + item.id + ")' class='btn btn-danger btn-delete'>" + "Delete" + "</td>";
+        tr += "</tr";
+
+        $(".tbody-users").append(tr);
+    })
+}

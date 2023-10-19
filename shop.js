@@ -3,8 +3,20 @@ $.ajax({
     url: "https://shop-n7rx.onrender.com/products",
     success: function (response) {
         const featuredProduct = response.filter(item => item.rating > 4.8);
-        console.log(featuredProduct)
-        renderFeaturedProduct(featuredProduct)
+        if (response) {
+            renderFeaturedProduct(featuredProduct)
+        } else {
+            $(".featuredPrdBox").html('<h1>Loading...</h1>')
+        }
+
+    }
+});
+
+$.ajax({
+    type: "GET",
+    url: "https://shop-n7rx.onrender.com/cart",
+    success: function (response) {
+        $(".quantityCart").text(response.length)
     }
 });
 

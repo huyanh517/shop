@@ -158,7 +158,7 @@
         <!-- End modal Add product -->
         <div class="container-fluid p-5">
             <h1 class="text-center">Admin Dashboard</h1>
-            <div class="d-flex justify-content-between mt-5">
+            <div class="d-flex justify-content-around align-items-center mt-5">
                 <ul
                     class="nav nav-pills mb-3 d-flex"
                     id="pills-tab"
@@ -203,10 +203,12 @@
                             aria-controls="pills-contact"
                             aria-selected="false"
                         >
-                            Contact
+                            Users
                         </button>
                     </li>
                 </ul>
+
+                <a href="./shop.html">Go to Shop</a>
             </div>
             <div class="tab-content p-2" id="pills-tabContent">
                 <div
@@ -279,11 +281,25 @@
                     role="tabpanel"
                     aria-labelledby="pills-contact-tab"
                 >
-                    Contact
+                <table class="table">
+                    <thead>
+                        <caption>
+                            Users
+                        </caption>
+                        <tr>
+                            <th>ID</th>
+                            <th>Avatar</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Gender</th>
+                            <th colspan="2" class="text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tbody-users"></tbody>
+                </table>
                 </div>
             </div>
         </div>
-        <a href="shop.html">Shop</a>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
