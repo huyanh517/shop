@@ -51,6 +51,31 @@ function loadSingleProduct(id) {
     $('#productModal').modal('show')
 }
 
+function loadSingleUser(id) {
+    $.ajax({
+        type: "GET",
+        url: "https://shop-n7rx.onrender.com/users/" + id,
+        success: function (response) {
+            displayUserModal(response)
+        }
+    });
+    $('#userModal').modal('show')
+}
+
+function displayUserModal(data) {
+    $('#userModal .mb-3').remove()
+    $('#exampleInputIDUser').remove()
+    let modalBody = "<div class='mb-3'>" +
+        "<label for='exampleInputTitleUser' class='form-label'>" + "Username" + "</label>" +
+        "<input type='text' class='form-control' id='exampleInputTitleUser' aria-describedby='titleHelp' value='" + data.username + "'>" +
+        "</div>"
+    modalBody += "<div class='mb-3'>" +
+        "<label for='exampleInputGenderUser' class='form-label'>" + "Gender" + "</label>" +
+        "<textarea type='text' class='form-control' id='exampleInputGenderUser' aria-describedby='titleHelp'>" + data.gender + "</textarea>" +
+        "</div>"
+    modalBody += "<input type='hidden' class='form-control' id='exampleInputIDUser' aria-describedby='titleHelp' value='" + data.id + "'>"
+    $(modalBody).insertBefore($('#btn-box-user'))
+  }
 
 function displayProductModal(data) {
     $('#productModal .mb-3').remove()
@@ -75,7 +100,7 @@ function displayProductModal(data) {
     modalBody += "<input type='hidden' class='form-control' id='exampleInputID' aria-describedby='titleHelp' value='" + data.id + "'>"
     $(modalBody).insertBefore($('#btn-box'))
 }
-
+// Edit user
 $(".product-form").on("submit", function (e) {
     e.preventDefault()
     const productUpdated = {
@@ -91,6 +116,24 @@ $(".product-form").on("submit", function (e) {
         success: function (response) {
             $("#productModal").modal('hide')
             loadProducts();
+        }
+    });
+})
+
+//Edit User
+$(".user-form").on("submit", function (e) {
+    e.preventDefault()
+    const userUpdated = {
+        username: $("#exampleInputTitleUser").val(),
+        gender: $("#exampleInputGenderUser").val()
+    }
+    $.ajax({
+        type: "PATCH",
+        url: "https://shop-n7rx.onrender.com/users/" + $("#exampleInputIDUser").val(),
+        data: userUpdated,
+        success: function (response) {
+            $("#userModal").modal('hide')
+            loadUsers();
         }
     });
 })
@@ -158,6 +201,24 @@ $('.product-form-add').on("submit", function (e) {
     });
 })
 
+// Delete user
+
+function deleteSingleUser(id) {
+    if (!confirm('Do you want to delete ?')) {
+        return
+    } else {
+        $.ajax({
+            type: "DELETE",
+            url: "https://shop-n7rx.onrender.com/users/" + id,
+            success: function (response) {
+                loadUsers();
+                displayDashboard()
+            }
+        });
+    }
+}
+
+
 // Display Users
 function displayUsers(data) {
     $(data).each((index, item) => {
@@ -167,8 +228,8 @@ function displayUsers(data) {
         tr += "<td>" + item.username + "</td>";
         tr += "<td>" + item.email + "</td>";
         tr += "<td>" + item.gender + "</td>";
-        tr += "<td style='width: 17%' class='text-center '>" + "<button onclick='loadSingleProduct(" + item.id + ")' class='btn btn-warning btn-edit'>" + "Edit" +
-            "</button>" + "<button onclick='deleteSingleProduct(" + item.id + ")' class='btn btn-danger btn-delete'>" + "Delete" + "</td>";
+        tr += "<td style='width: 17%' class='text-center '>" + "<button onclick='loadSingleUser(" + item.id + ")' class='btn btn-warning btn-edit'>" + "Edit" +
+            "</button>" + "<button onclick='deleteSingleUser(" + item.id + ")' class='btn btn-danger btn-delete'>" + "Delete" + "</td>";
         tr += "</tr";
 
         $(".tbody-users").append(tr);
