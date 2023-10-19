@@ -2,13 +2,13 @@ const urlParams = new URLSearchParams(window.location.search);
 const searchParam = urlParams.get('q');
 
 $(".searchText").text(searchParam)
-$.ajax({
-    type: "GET",
-    url: "https://shop-n7rx.onrender.com/products?q=" + searchParam,
-    success: function (response) {
-        renderProduct(response)
-    }
-});
+// $.ajax({
+//     type: "GET",
+//     url: "https://shop-n7rx.onrender.com/products?q=" + searchParam,
+//     success: function (response) {
+//         renderProduct(response)
+//     }
+// });
 
 //Search
 
