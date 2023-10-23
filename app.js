@@ -1,5 +1,3 @@
-window.onlo
-
 function loadProducts() {
     $.ajax({
         type: "GET",
