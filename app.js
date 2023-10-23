@@ -1,3 +1,5 @@
+window.onlo
+
 function loadProducts() {
     $.ajax({
         type: "GET",
@@ -181,7 +183,7 @@ function deleteSingleProduct(id) {
 // Add product
 $('.product-form-add').on("submit", function (e) {
     e.preventDefault()
-    const imageList = $("#exampleInputImagesAddPrd").val()
+    const imageList = $("#exampleInputImagesAddPrd").val().split(',')
     const newProduct = {
         title: $("#exampleInputTitleAddPrd").val(),
         description: $("#exampleInputDescAddPrd").val(),
@@ -235,3 +237,4 @@ function displayUsers(data) {
         $(".tbody-users").append(tr);
     })
 }
+

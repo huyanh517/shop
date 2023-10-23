@@ -12,7 +12,7 @@ $(".searchText").text(searchParam)
 
 //Search
 
-$(".searchForm").on('input', function() {
+$(".searchForm").on('input', function () {
     $(".searchBtn").attr('href', "./search.html?q=" + $(this).val())
 })
 
@@ -39,7 +39,8 @@ $.ajax({
     type: "GET",
     url: "https://shop-n7rx.onrender.com/cart",
     success: function (response) {
-        $(".quantityCart").text(response.length)
+        $(".quantityCart").empty()
+        displayQuantityCart(response)
     }
 });
 
@@ -50,11 +51,14 @@ function loadCartData() {
         success: function (response) {
             if (response.length < 1) {
                 $(".cart-container").html('<h1>Your Cart is Empty</>')
+                $(".quantityCart").empty()
+                displayQuantityCart(response)
             } else {
                 $(".cart-container").empty()
                 renderCart(response)
                 getInitValueAmount(response)
-
+                $(".quantityCart").empty()
+                displayQuantityCart(response)
             }
         }
     });
@@ -147,9 +151,15 @@ function removeCartItem(id) {
         url: "https://shop-n7rx.onrender.com/cart/" + id,
         success: function (response) {
             loadCartData()
+
         }
     });
 }
 
+
+function displayQuantityCart(data) {
+    let quantity = "<span class='badge text-bg-info quantityCart' style='color: #0dcaf0; margin-left: 4px'>" + data.length + "</span>"
+    $(quantity).insertAfter($(".cartIcon"))
+}
 
 

@@ -4,6 +4,7 @@ const productId = urlParams.get('id');
 const urlParamSearch = new URLSearchParams(window.location.search);
 const searchParam = urlParamSearch.get('q');
 
+
 $(".searchText").text(searchParam)
 
 // $.ajax({
@@ -16,7 +17,7 @@ $(".searchText").text(searchParam)
 
 //Search
 
-$(".searchForm").on('input', function() {
+$(".searchForm").on('input', function () {
     $(".searchBtn").attr('href', "./search.html?q=" + $(this).val())
 })
 
@@ -47,6 +48,15 @@ function renderBreadcumb(data) {
 
 $('.slick-next').html(">")
 $('.slick-prev').html("<")
+
+// Render quanityt
+$.ajax({
+    type: "GET",
+    url: "https://shop-n7rx.onrender.com/cart",
+    success: function (response) {
+        displayQuantityCart(response)
+    }
+});
 
 
 function renderProductDetail(data) {
@@ -88,10 +98,11 @@ $(".addToCart").on("click", function (e) {
             $.ajax({
                 type: "GET",
                 url: "https://shop-n7rx.onrender.com/cart",
-                success: function (response) {
-                    const existItem = response.find(item => item.prdID == productId)
+                success: function (responseCart) {
+
+                    const existItem = responseCart.find(item => item.prdID == productId)
                     if (existItem) {
-                        const cartItemId = response.findIndex(item => item.prdID == productId) + 1
+                        const cartItemId = responseCart.findIndex(item => item.prdID == productId) + 1
                         $.ajax({
                             type: "PATCH",
                             url: "https://shop-n7rx.onrender.com/cart/" + cartItemId,
@@ -101,9 +112,11 @@ $(".addToCart").on("click", function (e) {
                             success: function (response) {
                                 $("#success-alert").show();
                                 setTimeout(function () { $("#success-alert").hide(); }, 2000);
-
+                                $(".quantityCart").empty()
+                                displayQuantityCart(responseCart)
                             }
                         });
+
                     } else {
                         $.ajax({
                             type: "POST",
@@ -112,6 +125,14 @@ $(".addToCart").on("click", function (e) {
                             success: function (res) {
                                 $("#success-alert").show();
                                 setTimeout(function () { $("#success-alert").hide(); }, 2000);
+                                $.ajax({
+                                    type: "GET",
+                                    url: "https://shop-n7rx.onrender.com/cart",
+                                    success: function (response) {
+                                        $(".quantityCart").empty()
+                                        displayQuantityCart(response)
+                                    }
+                                });
                             }
                         });
                     }
@@ -129,3 +150,8 @@ $.ajax({
         $(".quantityCart").text(response.length)
     }
 });
+
+function displayQuantityCart(data) {
+    let quantity = "<span class='badge text-bg-info quantityCart' style='color: #0dcaf0; margin-left: 4px'>" + data.length + "</span>"
+    $(quantity).insertAfter($(".cartIcon"))
+}
