@@ -20,7 +20,7 @@ function renderProduct(data) {
     $(data).each((index, item) => {
         let productCard = "<div class='col-lg-4 col-md-6 col-12 mt-4'>"
         productCard += "<div class='card h-100'>"
-        productCard += "<img src='" + item.images[0] + "' class='card-img-top' alt='" + item.title + "'/>"
+        productCard += "<img src='" + item.images[0] + "' class='card-img-top w-md-100' alt='" + item.title + "'/>"
         productCard += "<div class='card-body'>"
         productCard += "<h5 class='card-title'>" + item.title + "</h5>"
         productCard += "<p class='card-text'>" + item.description + "</p>"
@@ -73,7 +73,7 @@ function renderCart(data) {
         <img
             src="https://i.dummyjson.com/data/products/${item.id}/thumbnail.jpg"
             alt="${item.title}"
-            class="w-75 prdCartImg"
+            class="w-100 prdCartImg"
         />
     </div>
     <div class="col-lg-9 prdDetail">

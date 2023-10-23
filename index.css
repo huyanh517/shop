@@ -158,3 +158,9 @@ p {
     background: #f0f6ff;
     text-align: center;
 }
+
+@media all and (max-width: 993px) {
+    .card-img-top {
+        width: 100% !important;
+    }
+}
