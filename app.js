@@ -7,6 +7,9 @@ function loadProducts() {
         success: function (response) {
             $(".tbody-products").empty()
             displayData(response);
+        },
+        complete: function() {
+            $(".loading-tbPrd").empty()
         }
     });
 }
@@ -18,6 +21,9 @@ function loadUsers() {
         success: function (response) {
             $(".tbody-users").empty()
             displayUsers(response);
+        },
+        complete: function() {
+            $(".loading-tbUser").hide()
         }
     });
 }
@@ -77,7 +83,7 @@ function displayUserModal(data) {
         "</div>"
     modalBody += "<input type='hidden' class='form-control' id='exampleInputIDUser' aria-describedby='titleHelp' value='" + data.id + "'>"
     $(modalBody).insertBefore($('#btn-box-user'))
-  }
+}
 
 function displayProductModal(data) {
     $('#productModal .mb-3').remove()
@@ -148,6 +154,9 @@ function displayDashboard() {
         success: function (response) {
             $('.product-qty').empty()
             $('.product-qty').text("Total: " + response.length)
+        },
+        complete: function () {
+            $(".loading-prd").empty()
         }
     });
     $.ajax({
@@ -156,6 +165,9 @@ function displayDashboard() {
         success: function (response) {
             $('.user-qty').empty()
             $('.user-qty').text("Total: " + response.length)
+        },
+        complete: function () {
+            $(".loading-user").empty()
         }
     });
 }
@@ -226,7 +238,7 @@ function displayUsers(data) {
     $(data).each((index, item) => {
         let tr = "<tr class='user-row' data-id='" + item.id + "'>";
         tr += "<td class='user-row-idx' scope='row'>" + Number(index + 1) + "</td>";
-        tr += "<td>" + "<img class='w-50' src='"+item.image+"' />" + "</td>";
+        tr += "<td>" + "<img class='w-50' src='" + item.image + "' />" + "</td>";
         tr += "<td>" + item.username + "</td>";
         tr += "<td>" + item.email + "</td>";
         tr += "<td>" + item.gender + "</td>";
@@ -238,3 +250,6 @@ function displayUsers(data) {
     })
 }
 
+
+
+// 

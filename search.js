@@ -7,7 +7,14 @@ $.ajax({
     type: "GET",
     url: "https://shop-n7rx.onrender.com/products?q=" + searchParam,
     success: function (response) {
-        renderProduct(response)
+        if (response.length < 1) {
+            $(".productSearchBox").append("<h2 class='text-center'>No products found</h2>")
+        } else {
+            renderProduct(response)
+        }
+    },
+    complete: function() {
+        $(".loading").empty()
     }
 });
 

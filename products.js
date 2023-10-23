@@ -23,14 +23,12 @@ $.ajax({
     type: "GET",
     url: "https://shop-n7rx.onrender.com/products",
     success: function (response) {
-
         if (response) {
             renderFeaturedProduct(response)
-
-        } else {
-            $(".productsBox").html('<h1>Loading...</h1>')
-        }
-
+        } 
+    },
+    complete: function() {
+        $(".loading").empty()
     }
 });
 

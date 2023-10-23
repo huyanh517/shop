@@ -5,10 +5,10 @@ $.ajax({
         const featuredProduct = response.filter(item => item.rating > 4.8);
         if (response) {
             renderFeaturedProduct(featuredProduct)
-        } else {
-            $(".featuredPrdBox").html('<h1>Loading...</h1>')
-        }
-
+        } 
+    },
+    complete: function() {
+        $(".loading").empty()
     }
 });
 
