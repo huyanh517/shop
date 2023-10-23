@@ -36,6 +36,9 @@ $.ajax({
             autoplay: true,
             fade: true,
         });
+    },
+    complete: function () {
+        $(".loading").empty()
     }
 });
 
